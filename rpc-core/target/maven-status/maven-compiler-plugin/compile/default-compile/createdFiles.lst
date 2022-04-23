@@ -1,0 +1,6 @@
+com\gogo\rpc\transport\RpcServer.class
+com\gogo\rpc\annotation\ServiceScan.class
+RpcClientProxy.class
+com\gogo\rpc\transport\RpcClient.class
+com\gogo\rpc\transport\WorkerThread.class
+com\gogo\rpc\annotation\Service.class

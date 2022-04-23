@@ -1,0 +1,4 @@
+com\gogo\rpc\entity\RpcRequest$RpcRequestBuilder.class
+com\gogo\rpc\entity\RpcResponse.class
+com\gogo\rpc\enumeration\ResponseCode.class
+com\gogo\rpc\entity\RpcRequest.class
