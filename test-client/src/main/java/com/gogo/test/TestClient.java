@@ -11,7 +11,6 @@ import com.gogo.rpc.client.RpcClientProxy;
  */
 public class TestClient {
     public static void main(String[] args) {
-//        new RpcClientP
         RpcClientProxy proxy = new RpcClientProxy("127.0.0.1", 9000);
         HelloService helloService = proxy.getProxy(HelloService.class);
         HelloObject object = new HelloObject(12, "This is a message");
@@ -19,5 +18,3 @@ public class TestClient {
         System.out.println(res);
     }
 }
-
-//此处使用到了rpc-core
