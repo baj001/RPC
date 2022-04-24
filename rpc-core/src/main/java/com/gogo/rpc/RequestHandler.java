@@ -1,4 +1,4 @@
-package com.gogo.rpc.server;
+package com.gogo.rpc;
 
 /**
  * @author baj

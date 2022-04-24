@@ -1,17 +1,19 @@
 package com.gogo.test;
 
+import com.gogo.rpc.RpcClientProxy;
 import com.gogo.rpc.api.HelloObject;
 import com.gogo.rpc.api.HelloService;
-import com.gogo.rpc.client.RpcClientProxy;
-//import com.gogo.rpc.transport.com.gogo.rpc.client.RpcClientProxy;
+import com.gogo.rpc.socket.SocketClient;
 
 /**
- * @author baj
- * @creat 2022-04-22 22:30
+ * 测试用消费者（客户端）
+ * @author ziyang
  */
-public class TestClient {
+public class SocketTestClient {
+
     public static void main(String[] args) {
-        RpcClientProxy proxy = new RpcClientProxy("127.0.0.1", 9000);
+        SocketClient client = new SocketClient("127.0.0.1", 9000);
+        RpcClientProxy proxy = new RpcClientProxy(client);
         HelloService helloService = proxy.getProxy(HelloService.class);
         HelloObject object = new HelloObject(12, "This is a message");
         String res = helloService.hello(object);

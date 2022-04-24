@@ -17,12 +17,17 @@
         <dependency>
             <groupId>com.gogo.rpc</groupId>
             <artifactId>rpc-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.gogo.test</groupId>
             <artifactId>test-server</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gogo.rpc</groupId>
+            <artifactId>rpc-api</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
 
