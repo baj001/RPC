@@ -3,7 +3,7 @@ package com.gogo.rpc.netty.server;
 import com.gogo.rpc.RpcServer;
 import com.gogo.rpc.codec.CommonDecoder;
 import com.gogo.rpc.codec.CommonEncoder;
-import com.gogo.rpc.serializer.JsonSerializer;
+import com.gogo.rpc.serializer.KryoSerializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -16,19 +16,16 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * @author baj
- * @creat 2022-04-24 20:22
+ * NIO方式服务提供侧
+ * @author ziyang
  */
 public class NettyServer implements RpcServer {
-
     private static final Logger logger = LoggerFactory.getLogger(NettyServer.class);
-
     @Override
     public void start(int port) {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
-
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
@@ -40,14 +37,13 @@ public class NettyServer implements RpcServer {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
-                            pipeline.addLast(new CommonEncoder(new JsonSerializer()));
+                            pipeline.addLast(new CommonEncoder(new KryoSerializer()));
                             pipeline.addLast(new CommonDecoder());
                             pipeline.addLast(new NettyServerHandler());
                         }
                     });
             ChannelFuture future = serverBootstrap.bind(port).sync();
             future.channel().closeFuture().sync();
-
         } catch (InterruptedException e) {
             logger.error("启动服务器时有错误发生: ", e);
         } finally {
@@ -56,4 +52,3 @@ public class NettyServer implements RpcServer {
         }
     }
 }
-

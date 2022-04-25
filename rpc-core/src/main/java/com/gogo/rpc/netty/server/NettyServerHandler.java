@@ -53,5 +53,4 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<RpcRequest> 
         cause.printStackTrace();
         ctx.close();
     }
-
 }
